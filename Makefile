@@ -1,5 +1,5 @@
 object := main.o sum.o hello.o leehm.o
-cobject := $(object:.o=.cc)
+override cobject := $(object:.o=.cc)
 cur-dir := $(shell pwd)
 objects := $(patsubst %.cc,%.o,$(wildcard *.cc))
 main : $(objects)
