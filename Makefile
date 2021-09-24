@@ -6,6 +6,17 @@ CC := g++
 libs_for_gcc = -lgnu
 normal_libs =
 
+comma:= ,
+empty:=
+space:= $(empty) $(empty)
+foo:= a b c
+bar:= $(subst $(space),$(comma),$(foo))
+ret := $(strip    a b c d )
+
+names := a b c d
+files := $(foreach n,$(names),$(n).o)
+reverse =  $(2) $(1)
+
 main : $(objects)
 ifeq ($(CC),g++)
 	@$(CC) -o main  $(objects) $(normal_libs)
@@ -24,3 +35,10 @@ clean :
 	@rm  -f main $(objects)
 	@echo "i love u"
 	echo $(cobject)
+	echo $(ret)
+	echo $(join leehm ubuntu ,$(suffix src/foo.c bar.h))
+	echo $(basename src/foo.c bar.h)
+	echo $(addsuffix $(suffix bar.h),$(basename src/foo.c bar.h))
+	echo $(files)
+	echo $(call reverse,a,b)
+	echo $(origin cobject)
